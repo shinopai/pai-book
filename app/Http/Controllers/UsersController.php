@@ -10,7 +10,7 @@ use App\Category;
 class UsersController extends Controller
 {
     public function showAll(){
-        $users = User::latest()->paginate(20);
+        $users = User::orderBy('id', 'desc')->paginate(20);
         $users->load('likes');
         $categories = Category::all();
         $categories->load('books');

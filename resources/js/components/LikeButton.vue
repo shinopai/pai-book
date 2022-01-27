@@ -26,8 +26,6 @@ export default {
     const currentUserId = ref()
     let isLiked = ref(Boolean)
 
-    console.log(location.href.split("/"));
-
     // get current user id
     const getCurrentUserId = async () => {
       await Axios.get('/api/user')
