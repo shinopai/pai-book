@@ -13685,6 +13685,18 @@ __webpack_require__.r(__webpack_exports__);
       }).catch(error => {
         console.log(error.response.data);
       });
+    }; // delete comment
+
+
+    const deleteComment = async commentId => {
+      if (confirm('Are you sure?')) {
+        await axios__WEBPACK_IMPORTED_MODULE_1___default.a.delete('/api/users/' + currentUserId.value + '/books/' + bookId.value + '/comments/' + commentId).then(response => {
+          getCurrentUserId();
+          getAllComments();
+        }).catch(error => {
+          console.log(error.response.data);
+        });
+      }
     }; // check if user's comment is valid
 
 
@@ -13710,7 +13722,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     return {
       newComment,
+      currentUserId,
       addComment,
+      deleteComment,
       allComments,
       errMessage,
       checkErr
@@ -13879,6 +13893,13 @@ const _hoisted_16 = {
 const _hoisted_17 = {
   key: 0
 };
+const _hoisted_18 = {
+  key: 1
+};
+const _hoisted_19 = ["onClick"];
+const _hoisted_20 = {
+  key: 0
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("form", _hoisted_2, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_3, [_hoisted_4, $setup.errMessage ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_5, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($setup.errMessage), 1
   /* TEXT */
@@ -13900,13 +13921,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   )]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_14, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_15, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("ul", _hoisted_16, [(Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["renderList"])($setup.allComments, comment => {
     return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("li", {
       key: comment,
-      class: "p-4 hover:bg-gray-50 cursor-pointer"
-    }, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(comment.body), 1
+      class: "p-4 hover:bg-gray-50 cursor-pointer flex items-center justify-start"
+    }, [$setup.currentUserId == comment.user.id ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_17, "あなた/")) : (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_18, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(comment.user.name) + "/", 1
     /* TEXT */
-    );
+    )), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("span", null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(comment.body), 1
+    /* TEXT */
+    ), $setup.currentUserId == comment.user.id ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", {
+      key: 2,
+      class: "material-icons text-blue-300",
+      onClick: $event => $setup.deleteComment(comment.id)
+    }, " delete ", 8
+    /* PROPS */
+    , _hoisted_19)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), $setup.allComments.length == 0 ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("li", _hoisted_17, "コメントはありません")) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)])])])])])])]);
+  )), $setup.allComments.length == 0 ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("li", _hoisted_20, "コメントはありません")) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)])])])])])])]);
 }
 
 /***/ }),

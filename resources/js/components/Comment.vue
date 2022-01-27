@@ -24,7 +24,14 @@
                 <div class="flex justify-start">
                     <div class="ml-10">
                         <ul class="divide-y divide-gray-300">
-                            <li v-for="comment in allComments" :key="comment" class="p-4 hover:bg-gray-50 cursor-pointer">{{ comment.body }}</li>
+                            <li v-for="comment in allComments" :key="comment" class="p-4 hover:bg-gray-50 cursor-pointer flex items-center justify-start">
+                              <span v-if="currentUserId == comment.user.id">あなた/</span>
+                              <span v-else>{{ comment.user.name }}/</span>
+                              <span>{{ comment.body }}</span>
+                              <span v-if="currentUserId == comment.user.id" class="material-icons text-blue-300" @click="deleteComment(comment.id)">
+                                delete
+                                </span>
+                              </li>
                             <li v-if="allComments.length == 0">コメントはありません</li>
                         </ul>
                     </div>
@@ -83,6 +90,20 @@ export default {
       })
     }
 
+    // delete comment
+    const deleteComment = async (commentId) => {
+      if(confirm('Are you sure?')){
+        await Axios.delete('/api/users/' + currentUserId.value + '/books/' + bookId.value + '/comments/' + commentId)
+                   .then( response => {
+                      getCurrentUserId()
+                      getAllComments()
+                   })
+                   .catch( error => {
+                     console.log(error.response.data)
+                   })
+      }
+    }
+
     // check if user's comment is valid
     const checkErr = () => {
       if(newComment.value.length > 100){
@@ -108,7 +129,7 @@ export default {
 
 
     return {
-      newComment, addComment, allComments, errMessage, checkErr
+      newComment, currentUserId, addComment, deleteComment, allComments, errMessage, checkErr
     }
 
   },

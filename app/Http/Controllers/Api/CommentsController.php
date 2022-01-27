@@ -28,4 +28,8 @@ class CommentsController extends Controller
 
         return $comments;
     }
+
+    public function destroy(User $user, Book $book, Comment $comment){
+        $comment->delete();
+    }
 }
