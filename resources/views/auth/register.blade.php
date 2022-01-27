@@ -9,12 +9,12 @@
         </div>
         <div class="mb-3">
             <div class="">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="p-2 w-2/3 mx-auto">
                         <div class="relative">
                             <label for="name" class="leading-7 text-sm text-gray-600">名前</label>
-                            <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value="{{ old('name') }}">
                             @error('name')
                             <span class="text-red-500" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -25,7 +25,7 @@
                     <div class="p-2 w-2/3 mx-auto">
                         <div class="relative">
                             <label for="email" class="leading-7 text-sm text-gray-600">メールアドレス</label>
-                            <input type="text" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <input type="text" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value="{{ old('email') }}">
                             @error('email')
                             <span class="text-red-500" role="alert">
                                 <strong>{{ $message }}</strong>
