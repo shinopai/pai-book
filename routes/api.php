@@ -24,4 +24,4 @@ Route::get('/user', function (Request $request) {
 Route::resource('users.books.comments', Api\CommentsController::class, ['only' => ['store', 'destroy']]);
 
   // get all comments per book
-  Route::get('books/{book}/comments', 'Api\CommentsController@getAll');
+  Route::get('/books/{book}/comments', 'Api\CommentsController@getAll');
