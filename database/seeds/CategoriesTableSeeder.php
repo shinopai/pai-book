@@ -11,6 +11,21 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $arr = [
+            'IT',
+            'ビジネス',
+            'デザイン',
+            '自己啓発',
+            '趣味',
+            'スポーツ',
+            '観光',
+            'カフェ'
+        ];
+
+        for ($i=0; $i < count($arr); $i++) {
+            Category::create([
+                'name' => $arr[$i]
+            ]);
+        }
     }
 }
