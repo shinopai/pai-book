@@ -52,7 +52,7 @@ export default {
     let errMessage = ref('')
     const allComments = ref([])
     const currentUserId = ref()
-    const bookId = ref(location.href.replace('http://localhost:8888/books/', ''))
+    const bookId = ref(location.href.split("/")[(location.href.split("/").length) - 1])
 
     // get current user id
     const getCurrentUserId = async () => {

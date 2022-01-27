@@ -22,9 +22,11 @@ import Axios from 'axios'
 export default {
   setup() {
     const likeNumber = ref()
-    const bookId = ref(location.href.replace('http://localhost:8888/books/', ''))
+    const bookId = ref(location.href.split("/")[(location.href.split("/").length) - 1])
     const currentUserId = ref()
     let isLiked = ref(Boolean)
+
+    console.log(location.href.split("/"));
 
     // get current user id
     const getCurrentUserId = async () => {
